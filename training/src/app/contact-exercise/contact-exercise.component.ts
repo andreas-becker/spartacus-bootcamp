@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService, ProductScope } from '@spartacus/core';
 
 @Component({
   selector: 'app-contact-exercise',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactExerciseComponent implements OnInit {
 
-  constructor() { }
+  product$ = this.productService.get('1990255', ProductScope.DETAILS);
+
+  constructor(protected productService: ProductService) { }
 
   ngOnInit(): void {
   }
