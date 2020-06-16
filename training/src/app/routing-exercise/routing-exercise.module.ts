@@ -15,7 +15,7 @@ import { ProductPrettyNameNormalizer } from './product-name-normalizer';
     CommonModule,
     ContactExerciseModule,
     RouterModule.forChild([
-      { path: 'contact', canActivate: [CmsPageGuard], component: ContactExerciseComponent, }
+      { path: 'contact', canActivate: [CmsPageGuard], component: ContactExerciseComponent, },
       //alias example
       { path: 'demo', canActivate: [CmsPageGuard], component: PageLayoutComponent, data: { pageLabel: '/faq'}},
     ]),
