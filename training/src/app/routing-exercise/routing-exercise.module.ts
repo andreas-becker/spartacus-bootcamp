@@ -4,7 +4,7 @@ import { ContactExerciseModule } from '../contact-exercise/contact-exercise.modu
 import { RouterModule } from '@angular/router';
 import { CmsPageGuard, PageLayoutComponent } from '@spartacus/storefront';
 import { ContactExerciseComponent } from '../contact-exercise/contact-exercise.component';
-import { RoutingConfig, ConfigModule, PRODUCT_NORMALIZER } from '@spartacus/core';
+import { RoutingConfig, ConfigModule, PRODUCT_NORMALIZER,OccConfig } from '@spartacus/core';
 import { ProductPrettyNameNormalizer } from './product-name-normalizer';
 
 
@@ -24,6 +24,8 @@ import { ProductPrettyNameNormalizer } from './product-name-normalizer';
         routes: {
           product: {
             paths: [
+              'product/:manufacturer/:productCode/:prettyName',
+              'product/:manufacturer/:productCode/:name',
               'oldschool/cameras/:productCode/:prettyName',
               'product/:productCode/:prettyName',
               'product/:productCode/:name'
@@ -31,6 +33,16 @@ import { ProductPrettyNameNormalizer } from './product-name-normalizer';
           },
         },
       } as RoutingConfig),
+      ConfigModule.withConfig({
+        backend: {
+          occ: {
+            endpoints: {
+        productSearch:
+        'products/search?fields=products(code,manufacturer,name,summary,price(FULL),images(DEFAULT),stock(FULL),averageRating,variantOptions),facets,breadcrumbs,pagination(DEFAULT),sorts(DEFAULT),freeTextSearch,currentQuery',
+            }
+          }
+        }
+      } as OccConfig),
   ],
   providers: [
     {
